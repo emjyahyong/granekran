@@ -36,54 +36,75 @@ Widget build(BuildContext context) {
       ],
     ),
     body: Center(
-      child: ListView(
+    child: Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/téléchargement.webp',
-                width: 150,
-                height: 150,
-                fit: BoxFit.cover,
-              ),
-            ),
-            title: const Text('Description du film 1'),
+          Image.asset(
+            'assets/images/téléchargement.webp',
+            width: 300,
+            height: 200,
+            fit: BoxFit.cover,
           ),
-          ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/téléchargement.webp',
-                width: 150,
-                height: 150,
-                fit: BoxFit.cover,
-              ),
+          SizedBox(height: 10), 
+          // Espacement entre les ListTile
+          Expanded(
+            child: ListView(
+              children: [
+                ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'assets/images/téléchargement.webp',
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: const Text('Description du film 1'),
+                ),
+                SizedBox(height: 10),
+                const Divider(height: 20, thickness: 5, indent: 20, endIndent: 20, color: Colors.black), // Espacement entre les ListTile
+                ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'assets/images/téléchargement.webp',
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: const Text('Description du film 2'),
+                ),
+                SizedBox(height: 10),
+                const Divider(height: 20, thickness: 5, indent: 20, endIndent: 20, color: Colors.black), // Espacement entre les ListTile
+                ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'assets/images/téléchargement.webp',
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: const Text('Description du film 3'),
+                ),
+              ],
             ),
-            title: const Text('Description du film 2'),
-          ),
-          ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/téléchargement.webp',
-                width: 150,
-                height: 150,
-                fit: BoxFit.cover,
-              ),
-            ),
-            title: const Text('Description du film 3'),
           ),
         ],
       ),
     ),
-    bottomNavigationBar: BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: "Recherche"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-      ],
-    ),
+    // bottomNavigationBar: BottomNavigationBar(
+    //   items: const [
+    //     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
+    //     BottomNavigationBarItem(icon: Icon(Icons.search), label: "Recherche"),
+    //     BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
+    //   ],
+    // ),
+  ),
   );
 }
 
