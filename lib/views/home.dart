@@ -5,60 +5,88 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [TextButton(
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      actions: [
+        TextButton(
           child: const Text("TOUS"),
           onPressed: () {
-            print('Menu cliqué');
+            print('TOUS cliqué');
           },
         ),
         TextButton(
           child: const Text("WESTERN"),
           onPressed: () {
-            print('Menu cliqué');
+            print('WESTERN cliqué');
           },
         ),
         TextButton(
           child: const Text("HORREUR"),
           onPressed: () {
-            print('Menu cliqué');
+            print('HORREUR cliqué');
           },
         ),
         TextButton(
           child: const Text("COMÉDIE"),
           onPressed: () {
-            print('Menu cliqué');
+            print('COMÉDIE cliqué');
           },
         ),
+      ],
+    ),
+    body: Center(
+      child: ListView(
+        children: [
+          ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/images/téléchargement.webp',
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: const Text('Description du film 1'),
+          ),
+          ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/images/téléchargement.webp',
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: const Text('Description du film 2'),
+          ),
+          ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/images/téléchargement.webp',
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: const Text('Description du film 3'),
+          ),
         ],
       ),
-      body: Center(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text('Description du film 1'),
-              leading: Expanded(
-                child: Image.asset(
-                  'assets/images/téléchargement.webp',
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(items: const [
+    ),
+    bottomNavigationBar: BottomNavigationBar(
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Recherche"),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-      ]),
-      
-    );
-  }
+      ],
+    ),
+  );
+}
+
 
   // Exemple simple d'une page d'accueil
   // @override
