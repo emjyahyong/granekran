@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     MovieCard(
                       title: movie.title,
                       description: movie.overview,
-                      // imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                      imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                     ),
                     const SizedBox(height: 10),
                     const Divider(height: 20, thickness: 2, color: Colors.white),
