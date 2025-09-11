@@ -1,0 +1,68 @@
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class MoviePage extends StatefulWidget {
+  const MoviePage({super.key});
+
+  @override
+  State<MoviePage> createState() => _MoviePageState();
+}
+
+class _MoviePageState extends State<MoviePage> {
+  Map<String, dynamic>? movie;
+  bool isLoading = true;
+
+  Future<void> fetchMovie() async {
+    final response = await http.get(
+      Uri.parse('https://www.omdbapi.com/?i=tt3896198&apikey=e33b1848'),
+    );
+
+    print("Status code: ${response.statusCode}");
+    print("Body: ${response.body.substring(0, 100)}");
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      setState(() {
+        movie = data;
+        isLoading = false;
+      });
+    } else {
+      throw Exception('Erreur lors du chargement du film');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMovie();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Film OMDB')),
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : movie == null
+              ? const Center(child: Text("Aucune donnée"))
+              : Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Titre : ${movie!['Title']}",
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      Text("Année : ${movie!['Year']}"),
+                      Image(image: NetworkImage(movie!['Poster'])),
+                      Text("Note : ${movie!['Rated']}"),
+                      Text("Sortie : ${movie!['Released']}"),
+                      Text("Durée : ${movie!['Runtime']}"),
+                    ],
+                  ),
+                ),
+    );
+  }
+}

@@ -5,6 +5,7 @@ class MovieCard extends StatelessWidget {
   final String title;
   final String description;
 
+  // const MovieCard({Key? key, required this.imageUrl, required this.title, required this.description}) : super(key: key);
   const MovieCard({Key? key, required this.imageUrl, required this.title, required this.description}) : super(key: key);
 
   @override
