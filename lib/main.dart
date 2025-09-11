@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:granekran/widgets/MovieCard.dart';
 import 'package:granekran/views/home.dart';
+import 'package:granekran/widgets/MoviePage';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

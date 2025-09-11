@@ -16,7 +16,8 @@ class _MoviePageState extends State<MoviePage> {
 
   Future<void> fetchMovie() async {
     final response = await http.get(
-      Uri.parse('https://www.omdbapi.com/?i=tt3896198&apikey=e33b1848'),
+      // Uri.parse('https://www.omdbapi.com/?i=tt3896198&apikey=e33b1848'),
+      Uri.parse('https://api.themoviedb.org/3/movie/popular?api_key=20a699fb69b82aaac4aca9f0179e8594&language=fr-FR'),
     );
 
     print("Status code: ${response.statusCode}");
@@ -40,29 +41,44 @@ class _MoviePageState extends State<MoviePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Film OMDB')),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : movie == null
-              ? const Center(child: Text("Aucune donnée"))
-              : Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Titre : ${movie!['Title']}",
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text("Année : ${movie!['Year']}"),
-                      Image(image: NetworkImage(movie!['Poster'])),
-                      Text("Note : ${movie!['Rated']}"),
-                      Text("Sortie : ${movie!['Released']}"),
-                      Text("Durée : ${movie!['Runtime']}"),
-                    ],
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Film OMDB')),
+        body: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : movie == null
+                ? const Center(child: Text("Aucune donnée"))
+                : Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListView.builder(
+                      itemCount: movie!['results'].length,
+                      itemBuilder: (context, index) {
+                        final film = movie!['results'][index];
+                        return Card(
+                          margin: const EdgeInsets.symmetric(vertical: 8),
+                          child: ListTile(
+                            title: Text(
+                              film['title'] ?? 'Titre inconnu',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              film['release_date'] ?? 'Date inconnue',
+                            ),
+                            leading: film['poster_path'] != null
+                                ? Image.network(
+                                    'https://image.tmdb.org/t/p/w92${film['poster_path']}',
+                                    width: 50,
+                                    fit: BoxFit.cover,
+                                  )
+                                : const Icon(Icons.movie),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
-    );
+      );
   }
 }
